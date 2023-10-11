@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trial1</title>
+    <!--use the css file from css-->
+    <link rel="stylesheet" href="../css/CustomizedBootStrap.css">
+    <script src="../js/jquery.js"></script>
+    <script src="../js/bootstrap.js"></script>
+</head>
+<body>
+<section class="mb-5">
+    <nav class="navbar navbar-expand-lg bg-primary bg-gradient navbar-dark shadow text-light fixed-top">
+        <!--mark the style and fix the navigation at the top-->
+        <div class="container">
+            <a href="#" class="navbar-brand">Book<span class="text-warning">Management System</span></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navmenu">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navmenu">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
+                    <!--link to the frontpage for the user-->
+                    <li class="nav-item"><a class="nav-link" href="/BookManagement">Book Management</a></li>
+                    <!--link to the commodities display page, still constructing...-->
+                    <li class="nav-item"><a class="nav-link" href="/CustomerManagement">Customer Management</a></li><!--link to all the shops-->
+                    <li class="nav-item"><a class="nav-link" href="/AuthorManagement">Author Management</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/BookCopiesManagement">Book Copies Management</a> </li>
+                    <li class="nav-item"><a class="nav-link" href="/BookRentalsManagement">Book Rentals</a></li><!--link to the shopping cart, still constructing...-->
+                    <!--log out function-->
+                </ul>
+            </div>
+        </div>
+    </nav>
+</section>
+<section class=" bg-primary">
+    <div class="container">
+        <div class="row align-items-center justify-content-between">
+            <div class="col-md p-5 lead text-light">
+                <h1 class="text-center">Customer Details</h1>
+            </div>
+        </div>
+    </div>
+</section>
+<!--table present the data-->
+<section class="bg-light">
+    <div class="container ">
+        <h2 class="text-center">Detail List</h2>
+        <div class="heading-line"></div>
+        <table class="table mt-6 table-striped table-hover text-center justify-content-center">
+            <thead class="thead-dark">
+            <tr>
+                <!--title of the table-->
+                <th scope="col">Customer ID</th>
+                <th scope="col">Name</th>
+                <th scope="col">Email</th>
+                <th scope="col">Address</th>
+                <th scope="col">Date of Birth</th>
+                <th scope="col">Late Fee</th>
+            </tr>
+            </thead>
+            <tbody th:each="i:${customer}">
+            <tr>
+                <!--iterate the details and use jinja placing the info to the table-->
+                <td><h4 th:text="${i.getCustomerId()}"></h4></td>
+                <td><h4 th:text="${i.getName()}"></h4></td>
+                <td><h4 th:text="${i.getEmail()}"></h4></td>
+                <td><h4 th:text="${i.getAddress()}"></h4></td>
+                <td><h4 th:text="${i.getDateOfBirth()}"></h4></td>
+                <td><h4 th:text="${i.getLateFees()}"> </h4></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</section>
+<section class="p-6 m-5">
+    <div class="container ">
+        <table class="table mt-6 table-striped table-hover align-middle"><!--strip style,middle alignment-->
+            <thead class="thead-dark">
+            <tr>
+                <!--title for the table-->
+                <th scope="col">Book Rental ID</th>
+                <th scope="col">Book Copy ID</th>
+                <th scope="col">Check Out Date</th>
+                <th scope="col">Expect Return Date</th>
+                <th scope="col">Actual Return Date</th>
+                <th scope="col">Status</th>
+            </tr>
+            </thead>
+            <tbody th:each="i:${rental}">
+            <tr>
+                <!--iterate the details and use jinja placing the info to the table-->
+                <td><h4 th:text="${i.getBookRentalId()}"></h4></td>
+                <td><h4 th:text="${i.getBookCopy().getBookCopyId()}"></h4></td>
+                <td><h4 th:text="${i.getCheckOutDate()}"></h4></td>
+                <td><h4 th:text="${i.getExpectedReturnDate()}"></h4></td>
+                <td><h4 th:text="${i.getActualReturnDate()}"></h4></td>
+                <td><h4 th:text="${i.getStatus()}"></h4></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</section>
+
+</body>
+</html>

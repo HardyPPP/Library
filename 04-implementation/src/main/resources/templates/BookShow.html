@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" integrity="sha512-5A8nwdMOWrSz20fDsjczgUidUBR8liPYU+WymTZP1lmY9G6Oc7HlZv156XqnsgNUzTyMefFTcsFH/tnJE/+xBg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="/css/style.css">
+  <title>Document</title>
+</head>
+<body>
+<div class="card">
+  <div class="circle">
+    <div class="imgBx">
+      <img src="../pictureResouce/book2.png" id="img" alt="">
+    </div>
+  </div>
+  <div class="content" th:each="i:${book}">
+    <h2 th:text="${i.getTitle()}"></h2>
+    <h4 th:each="Author:${i.getAuthors()}" th:text="${Author.getName()}"></h4>
+    <h4 th:text="${i.getIsbnNumber()}"></h4>
+      <!--iterate the details and use jinja placing the info to the table-->
+    <h4 th:text="${i.getSection()}"></h4>
+    <h4 th:text="${i.getShelf()}"></h4>
+    <div class="textIcon" >
+      <h4>Confirm</h4>
+      <a href="/BookManagement" ><i class="fa fa-arrow-right" aria-hidden="true"></i>
+      </a>
+    </div>
+  </div>
+</div>
+</body>
+</html>

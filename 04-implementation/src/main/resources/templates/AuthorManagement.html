@@ -1,0 +1,135 @@
+<!--To render the base-->
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Trial1</title>
+  <!--use the css file from css-->
+  <!--    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">-->
+  <link rel="stylesheet" href="/css/CustomizedBootStrap.css" type="text/css" >
+  <script src="../js/jquery.js"></script>
+  <!--    <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>-->
+  <script src="../js/bootstrap.js"></script>
+  <style>
+    .col-center-block{
+      float: none;
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+    }
+  </style>
+  <!--apply the base head-->
+</head>
+<body>
+<section class="mb-5">
+  <nav class="navbar navbar-expand-lg bg-primary bg-gradient navbar-dark shadow text-light fixed-top">
+    <!--mark the style and fix the navigation at the top-->
+    <div class="container">
+      <a href="#" class="navbar-brand">Customer<span class="text-warning">Management System</span></a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navmenu">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navmenu">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
+          <!--link to the frontpage for the user-->
+          <li class="nav-item"><a class="nav-link" href="/BookManagement">Book Management</a></li>
+          <!--link to the commodities display page, still constructing...-->
+          <li class="nav-item"><a class="nav-link" href="/CustomerManagement">Customer Management</a></li><!--link to all the shops-->
+          <li class="nav-item"><a class="nav-link" href="/AuthorManagement">Author Management</a></li>
+          <li class="nav-item"><a class="nav-link" href="/BookCopiesManagement">Book Copies Management</a> </li>
+          <li class="nav-item"><a class="nav-link" href="/BookRentalsManagement">Book Rentals</a></li><!--link to the shopping cart, still constructing...-->
+          <!--log out function-->
+        </ul>
+      </div>
+    </div>
+  </nav>
+</section>
+<!--First Section is the overall intro of the application-->
+<section class="p-5 bg-dark mt-5">
+  <!--use the container to control the margin of the content (ensure not the full screen but in limit area)-->
+  <div class="container mt-5">
+    <!--use the grid to control the layout of the two pieces (picture and text part)-->
+    <div class="row align-items-center justify-content-between">
+      <div class="col-md">
+        <!--75% width height + responsive adjustment-->
+        <img src="../pictureResouce/Author.png" class="img-fluid w-25">
+      </div>
+      <!--text part, padding 5 with light text and lead font-->
+      <div class="col-md p-5 lead text-light">
+        <h2>View All the Author here</h2>
+        <p class="lead text-light">
+          This page is used to view all the authors in the repository, you are allowed to add book here .
+        </p>
+        <!--A Search function, providing with an input area (haven't implement the function yet)-->
+      </div>
+
+    </div>
+  </div>
+
+</section>
+<!--This section is the display of the shops in the database-->
+
+<section class="bg-light p-5">
+  <div class="container ">
+    <h2 class="text-center">Author</h2>
+    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo" style="float: right"><span class="text-light">Add Author</span></button>
+    <div class="heading-line"></div>
+    <table  class="table mt-6 table-striped table-hover text-center justify-content-center">
+      <thead class="thead-dark">
+      <tr>
+        <!--title of the table-->
+        <th scope="col">Author ID</th>
+        <th scope="col">Author Name</th>
+
+      </tr>
+      </thead>
+      <tbody>
+      <tbody th:each="i:${authorList}">
+      <tr>
+        <!--iterate the details and use jinja placing the info to the table-->
+        <td><h4 th:text="${i.getAuthorId()}"></h4></td>
+        <td><h4 th:text="${i.getName()}"></h4></td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" style="width: 20%">
+    <div class="modal-content">
+      <h4 class="modal-title align-items-center text-center">Add Author Form</h4>
+      <div class="modal-header">
+        <div class="modal-body">
+          <div>
+            <form id="addAuthor" th:action="@{/addAuthor}" method="post">
+              <div class="form-group">
+                <label class="control-label">Author Name</label>
+                <input type="text" class="form-control" name="authorName" value="">
+              </div>
+              <div class="form-group">
+                <button type="submit" class="btn btn-primary form-control mt-7" id="submitAuthorInfo" onclick="func()">Add</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+</script>
+</body>
+</html>

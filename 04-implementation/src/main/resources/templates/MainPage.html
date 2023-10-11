@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/css/CustomizedBootStrap.css" type="text/css" >
+  <title>Trial1</title>
+</head>
+<!--This is the homepage for the user-->
+<body>
+<!--To begin with, is a navigation bar for the user-->
+<!--It should be marked that this navigation codes have been integrated into the baseForUserAndUnlogin.html -->
+<!--brief introduction of the application-->
+<section>
+  <nav class="navbar navbar-expand-lg bg-primary bg-gradient navbar-dark shadow text-light fixed-top">
+    <!--mark the style and fix the navigation at the top-->
+    <div class="container">
+      <a href="#" class="navbar-brand">Library<span class="text-warning">Management System</span></a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navmenu">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navmenu">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
+          <!--link to the frontpage for the user-->
+          <li class="nav-item"><a class="nav-link" href="/BookManagement">Book Management</a></li>
+          <!--link to the commodities display page, still constructing...-->
+          <li class="nav-item"><a class="nav-link" href="/CustomerManagement">Customer Management</a></li><!--link to all the shops-->
+          <li class="nav-item"><a class="nav-link" href="/AuthorManagement">Author Management</a></li>
+          <li class="nav-item"><a class="nav-link" href="/BookCopiesManagement">Book Copies Management</a> </li>
+          <li class="nav-item"><a class="nav-link" href="/BookRentalsManagement">Book Rentals</a></li><!--link to the shopping cart, still constructing...-->
+          <!--log out function-->
+        </ul>
+      </div>
+    </div>
+  </nav>
+</section>
+<section class="pt-11 bg-primary bg-gradient text-light text-center text-sm-start"> <!--padding-->
+  <div class="container">
+    <div class="d-flex"> <!--display flex-->
+      <div>
+        <!--get info from the session, display the name of the user-->
+        <h1><span class="text-info">Hi </span>Manager</h1>
+        <h1><span class="text-warning">Welcome</span> Back</h1>
+        <p class="my-4"><!--margin-top margin-bottom-->
+          <h3>This website is a management system provided for the librarian. Librarian is able to add book and book copies information,
+        while doing edition to the customer and its information.</h3>
+        <form method=get th:action="@{/initDB}">
+        <button class="btn btn-light" onclick="alert('You have init the database successfully')" >Init Database Here</button>
+        </form>
+        </p>
+        <!--link to the commodities list which is still constructing-->
+      </div>
+      <img src="../pictureResouce/book1.png" alt="showcase" class="w-25 d-none d-md-block">
+    </div>
+  </div>
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+    <path fill="#fff" fill-opacity="1"
+          d="M0,32L11.4,58.7C22.9,85,46,139,69,144C91.4,149,114,107,137,101.3C160,96,183,128,206,149.3C228.6,171,251,181,274,176C297.1,171,320,149,343,133.3C365.7,117,389,107,411,117.3C434.3,128,457,160,480,165.3C502.9,171,526,149,549,154.7C571.4,160,594,192,617,181.3C640,171,663,117,686,85.3C708.6,53,731,43,754,80C777.1,117,800,203,823,218.7C845.7,235,869,181,891,144C914.3,107,937,85,960,112C982.9,139,1006,213,1029,208C1051.4,203,1074,117,1097,85.3C1120,53,1143,75,1166,96C1188.6,117,1211,139,1234,149.3C1257.1,160,1280,160,1303,160C1325.7,160,1349,160,1371,154.7C1394.3,149,1417,139,1429,133.3L1440,128L1440,320L1428.6,320C1417.1,320,1394,320,1371,320C1348.6,320,1326,320,1303,320C1280,320,1257,320,1234,320C1211.4,320,1189,320,1166,320C1142.9,320,1120,320,1097,320C1074.3,320,1051,320,1029,320C1005.7,320,983,320,960,320C937.1,320,914,320,891,320C868.6,320,846,320,823,320C800,320,777,320,754,320C731.4,320,709,320,686,320C662.9,320,640,320,617,320C594.3,320,571,320,549,320C525.7,320,503,320,480,320C457.1,320,434,320,411,320C388.6,320,366,320,343,320C320,320,297,320,274,320C251.4,320,229,320,206,320C182.9,320,160,320,137,320C114.3,320,91,320,69,320C45.7,320,23,320,11,320L0,320Z"></path>
+  </svg>
+</section>
+<!--This part is used to search for certain items in the commodities still constructing-->
+<!--This part is a hot seller list, presenting the items that is popular-->
+<section class="p-5">
+  <div class="container">
+    <div class="mb-3">
+      <h3>Functions</h3>
+    </div>
+    <!--using the grid to construct the overall layout-->
+    <div class="row g-4"> <!--gap-4-->
+      <div class="col-md">
+        <!--using card to present-->
+        <div class="card bg-light">
+          <img src="../pictureResouce/book7.png" class="card-img-top img-fluid ">
+          <div class="card-body  text-center">
+            <div class="card-title">
+              <!--Here, the items are currently static, it would be dynamic in the following development-->
+              Book Management
+            </div>
+            <div class="card-text mt-2"> <!--margin top-->
+
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md">
+        <!--same as top-->
+        <div class="card bg-secondary text-light">
+          <img src="../pictureResouce/book4.png" class="card-img-top img-fluid ">
+          <div class="card-body  text-center">
+            <div class="card-title">
+              Customer Management
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md">
+        <!--same as top-->
+        <div class="card bg-dark text-light">
+          <img src="../pictureResouce/book8.png" class="card-img-top img-fluid ">
+          <div class="card-body  text-center">
+            <div class="card-title">
+              Rental Management
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!--this section allows the user to register as a business user-->
+
+
+<!--This section allows user to become a deliverer-->
+
+
+<!--brief intro of the developing team-->
+<!--connection-->
+<section class="p-5">
+  <div class="container">
+    <h2 class="text-center">Contact us</h2>
+    <ul class="list-group list-group-flush"><!--use the list group to list the item here-->
+      <li class="list-group-item">Phone Number:15811537702</li>
+      <li class="list-group-item">Email:Hanyi.Jin@ucdconnect.ie</li>
+    </ul>
+  </div>
+</section>
+
+<!--brief footer of the developers-->
+
+<footer class=" p-5 bg-dark text-light text-center">
+  <div class="container">
+    <p class="lead">Developed by Bowen Zhang, Haiyi Jin,Xiao Ma,Tianyu Zeng</p>
+  </div>
+</footer>
+
+</body>
+</html>

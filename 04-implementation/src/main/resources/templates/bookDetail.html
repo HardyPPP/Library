@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Trial1</title>
+  <!--use the css file from css-->
+  <link rel="stylesheet" href="../css/CustomizedBootStrap.css">
+  <script src="../js/jquery.js"></script>
+  <script src="../js/bootstrap.js"></script>
+</head>
+<body>
+<section class="mb-5">
+  <nav class="navbar navbar-expand-lg bg-primary bg-gradient navbar-dark shadow text-light fixed-top">
+    <!--mark the style and fix the navigation at the top-->
+    <div class="container">
+      <a href="#" class="navbar-brand">Book<span class="text-warning">Management System</span></a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navmenu">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navmenu">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
+          <!--link to the frontpage for the user-->
+          <li class="nav-item"><a class="nav-link" href="/BookManagement">Book Management</a></li>
+          <!--link to the commodities display page, still constructing...-->
+          <li class="nav-item"><a class="nav-link" href="/CustomerManagement">Customer Management</a></li><!--link to all the shops-->
+          <li class="nav-item"><a class="nav-link" href="/AuthorManagement">Author Management</a></li>
+          <li class="nav-item"><a class="nav-link" href="/BookCopiesManagement">Book Copies Management</a> </li>
+          <li class="nav-item"><a class="nav-link" href="/BookRentalsManagement">Book Rentals</a></li><!--link to the shopping cart, still constructing...-->
+          <!--log out function-->
+        </ul>
+      </div>
+    </div>
+  </nav>
+</section>
+<section class=" bg-primary">
+  <div class="container">
+    <div class="row align-items-center justify-content-between">
+      <div class="col-md p-5 lead text-light">
+        <h1 class="text-center">Book Details</h1>
+      </div>
+    </div>
+  </div>
+</section>
+<!--table present the data-->
+<h3 class="text-warning text-center" th:each="j:${error}" th:text="${j.getMsg()}"></h3>
+<section class="bg-light">
+  <div class="container ">
+    <h2 class="text-center">Book List</h2>
+    <div class="heading-line"></div>
+    <table class="table mt-6 table-striped table-hover text-center justify-content-center">
+      <thead class="thead-dark">
+      <tr>
+        <!--title of the table-->
+        <th scope="col">Title</th>
+        <th scope="col">Author</th>
+        <th scope="col">ISBN Number</th>
+        <th scope="col">Section</th>
+        <th scope="col">Shelf</th>
+        <th scope="col">Operation</th>
+      </tr>
+      </thead>
+      <tbody th:each="i:${book}">
+      <tr>
+        <!--iterate the details and use jinja placing the info to the table-->
+        <td><h4 th:text="${i.getTitle()}"></h4></td>
+        <td><h4 th:each="Author:${i.getAuthors()}" th:text="${Author.getName()}"></h4></td>
+        <td><h4 th:text="${i.getIsbnNumber()}"></h4></td>
+        <td><h4 th:text="${i.getSection()}"></h4></td>
+        <td><h4 th:text="${i.getShelf()}"></h4></td>
+        <td ><button  type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo" ><span class="text-light">Add To Waiting List</span></button> </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section class="bg-light">
+  <div class="container ">
+    <h2 class="text-center">Waiting List</h2>
+    <div class="heading-line"></div>
+    <table class="table mt-6 table-striped table-hover text-center justify-content-center">
+      <thead class="thead-dark">
+      <tr>
+        <!--title of the table-->
+        <th scope="col">Customer ID</th>
+        <th scope="col">Customer Name</th>
+        <th scope="col">Customer Email</th>
+      </tr>
+      </thead>
+      <tbody th:each="i:${waitingList}">
+      <tr>
+        <!--iterate the details and use jinja placing the info to the table-->
+        <td><h4 th:text="${i.getCustomerId()}"></h4></td>
+        <td><h4 th:text="${i.getName()}"></h4></td>
+        <td><h4 th:text="${i.getEmail()}"></h4></td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" style="width: 20%">
+    <div class="modal-content">
+      <h4 class="modal-title align-items-center text-center">Add To Waiting list Form</h4>
+      <div class="modal-header">
+        <div class="modal-body">
+          <div>
+            <form id="addToWaitingList" th:action="@{/addToWaitingList}" method="post">
+
+              <div class="form-group">
+                <label class="control-label">Book Id</label>
+                <input th:each="i:${book}" type="text" class="form-control" name="bookId" th:value="${i.getBookId()}">
+              </div>
+              <div class="form-group">
+                <label class="control-label">Customer Id</label>
+                <input type="text" class="form-control" name="customerId">
+              </div>
+
+              <div class="form-group">
+                <button type="submit" class="btn btn-primary form-control mt-7" id="submitAddInfo">Add</button>
+              </div>
+
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+</body>
+</html>

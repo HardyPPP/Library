@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form id="addAuthor" th:action="@{/addAuthor}" method="post">
+    <input name="authorName">
+    <button type="submit">add</button>
+
+</form>
+
+<form id="addBook" th:action="@{/addBook}" method="post">
+    <input name="authorName" placeholder="authorName">
+    <input name="bookTitle" placeholder="bookTitle">
+    <input name="isbnNumber" placeholder="isbnNumber">
+    <input name="section" placeholder="section">
+    <input name="shelf" placeholder="shelf">
+    <button type="submit">addBook</button>
+</form>
+
+<form id="addCustomer" th:action="@{/addCustomer}" method="post">
+    <input name="customerName" placeholder="customerName">
+    <input name="dateOfBirth" placeholder="dateOfBirth">
+    <input name="email" placeholder="email">
+    <input name="address" placeholder="address">
+    <input name="maxRentals" placeholder="maxRentals">
+    <input name="phone_number" placeholder="phone_number">
+    <button type="submit">addCustomer</button>
+</form>
+
+
+<form id="findBook" th:action="@{/findBook}" method="post">
+    <input name="text" placeholder="text">
+    <button type="submit">findBook</button>
+</form>
+
+<form id="addBookCopies" th:action="@{/addBookCopies}" method="post">
+    <input name="bookIdAdd" placeholder="bookIdAdd">
+    <input name="numberCopies" placeholder="numberCopies">
+    <button type="submit">addBookCopies</button>
+</form>
+
+<form id="removeBookCopy" th:action="@{/removeBookCopy}" method="post">
+    <input name="bookIdRemove" placeholder="bookIdRemove">
+    <button type="submit">removeBookCopy</button>
+</form>
+
+<form id="findCustomer" th:action="@{/findCustomer}" method="post">
+    <input name="customerFindText" placeholder="customerFindText">
+    <button type="submit">findCustomer</button>
+</form>
+<form id="selectBook" th:action="@{/selectBook}" method="post">
+    <input name="bookId" placeholder="bookId">
+    <button type="submit">selectBook</button>
+</form>
+<form id="addToWaitingList" th:action="@{/addToWaitingList}" method="post">
+    <input name="bookId" placeholder="bookId">
+    <input name="customerId" placeholder="customerId">
+    <button type="submit">addToWaitingList</button>
+</form>
+
+<form id="showCustomer" th:action="@{/showCustomer}" method="post">
+    <input name="customerShowId" placeholder="customerShowId">
+    <button type="submit">showCustomer</button>
+</form>
+
+<form id="addRental" th:action="@{/addRental}" method="post">
+    <input name="customerRentalId" placeholder="customerRentalId">
+    <input name="bookCopyRentalId" placeholder="bookCopyRentalId">
+    <input name="checkOutDateRental" placeholder="checkOutDateRental">
+    <input name="returnDateRental" placeholder="returnDateRental">
+    <button type="submit">addRental</button>
+</form>
+
+<form id="addReturn" th:action="@{/addReturn}" method="post">
+    <input name="customerReturnId" placeholder="customerReturnId">
+    <input name="bookCopyReturnId" placeholder="bookCopyReturnId">
+    <input name="returnDateReturn" placeholder="returnDateReturn">
+    <button type="submit">addReturn</button>
+</form>
+
+<form id="addPayment" th:action="@{/addPayment}" method="post">
+    <input name="customerPayId" placeholder="customerPayId">
+    <input name="paymentAmount" placeholder="paymentAmount">
+    <button type="submit">addPayment</button>
+</form>
+
+<table th:each="i:${book}">
+    <tr>
+        <td>Book Title</td>
+        <td th:text="${i.getTitle()}"></td>
+    </tr>
+    <tr>
+        <td>ISBN Number</td>
+        <td th:text="${i.getIsbnNumber()}"></td>
+    </tr>
+    <tr >
+        <td>Authors</td>
+        <td th:each="a:${i.getAuthors()}" th:text="${a}"></td>
+    </tr>
+    <tr>
+        <td>Section</td>
+        <td th:text="${i.getSection()}"></td>
+    </tr>
+    <tr>
+        <td>Shelf</td>
+        <td th:text="${i.getShelf()}"></td>
+    </tr>
+</table>
+<table th:each="i:${idList}">
+    <tr>
+        <td>Id</td>
+        <td th:text="${i}"></td>
+    </tr>
+</table>
+<table th:each="i:${bookList}">
+    <tr>
+        <td>Id</td>
+        <td th:text="${i.getTitle()}"></td>
+    </tr>
+</table>
+<table th:each="i:${customer}">
+    <tr>
+        <td>Id</td>
+        <td th:text="${i.getName()}"></td>
+    </tr>
+
+</table>
+<table th:each="i:${copies}">
+    <tr>
+        <td>Id</td>
+        <td th:text="${i.getBookCopyId()}"></td>
+    </tr>
+</table>
+<table th:each="i:${waitingList}">
+    <tr>
+        <td>Id</td>
+        <td th:text="${i.getName()}"></td>
+
+    </tr>
+</table>
+
+<table th:each="i:${bookRental}">
+    <tr>
+        <td>Id</td>
+        <td th:text="${i.getBookRentalId()}"></td>
+    </tr>
+</table>
+<table th:each="i:${error}">
+    <tr>
+        <td>error: </td>
+        <td th:text="${i.msg}"></td>
+    </tr>
+</table>
+
+</body>
+</html>

@@ -1,0 +1,14 @@
+package com.example.demo.system;
+
+public enum ErrorType {
+    NOT_AVAILABLE_COPY,
+    EMPTY_AUTHOR,
+    EMPTY_BOOK,
+    EMPTY_CUSTOMER,
+    DUPLICATE_AUTHOR,
+    DUPLICATE_BOOK,
+    DUPLICATE_CUSTOMER,
+    REACH_RENTALRECORD,
+    BOOK_COPY_NOT_EXIST,
+    CUSTOMER_NOT_EXIST, BAD_DAY;
+}

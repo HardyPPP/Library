@@ -1,0 +1,183 @@
+<!--To render the base-->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trial1</title>
+    <!--use the css file from css-->
+    <link rel="stylesheet" href="../css/CustomizedBootStrap.css">
+    <script src="../js/jquery.js"></script>
+    <script src="../js/bootstrap.js"></script>
+    <!--apply the base head-->
+</head>
+<body>
+<section class="mb-5">
+    <nav class="navbar navbar-expand-lg bg-primary bg-gradient navbar-dark shadow text-light fixed-top">
+        <!--mark the style and fix the navigation at the top-->
+        <div class="container">
+            <a href="#" class="navbar-brand">Book<span class="text-warning">Management System</span></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navmenu">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navmenu">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
+                    <!--link to the frontpage for the user-->
+                    <li class="nav-item"><a class="nav-link" href="/BookManagement">Book Management</a></li>
+                    <!--link to the commodities display page, still constructing...-->
+                    <li class="nav-item"><a class="nav-link" href="/CustomerManagement">Customer Management</a></li><!--link to all the shops-->
+                    <li class="nav-item"><a class="nav-link" href="/AuthorManagement">Author Management</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/BookCopiesManagement">Book Copies Management</a> </li>
+                    <li class="nav-item"><a class="nav-link" href="/BookRentalsManagement">Book Rentals</a></li><!--link to the shopping cart, still constructing...-->
+                    <!--log out function-->
+                </ul>
+            </div>
+        </div>
+    </nav>
+</section>
+<!--First Section is the overall intro of the application-->
+<h3 class="text-warning text-center" th:each="j:${error}" th:text="${j.getMsg()}"></h3>
+<section class="p-5 bg-success mt-5">
+    <!--use the container to control the margin of the content (ensure not the full screen but in limit area)-->
+    <div class="container mt-5">
+        <!--use the grid to control the layout of the two pieces (picture and text part)-->
+        <div class="row align-items-center justify-content-between">
+            <div class="col-md">
+                <!--75% width height + responsive adjustment-->
+                <img src="../pictureResouce/customer3.png" class="img-fluid w-50">
+            </div>
+            <!--text part, padding 5 with light text and lead font-->
+            <div class="col-md p-5 lead text-light">
+                <h2>View All the Customers Here</h2>
+                <p class="lead text-light">
+                    This page is used to view all the users, you are allowed to manage all the customers here.
+                    Add Customer is available in this page.
+                </p>
+                <form method="post" th:action="@{/findCustomer}" >
+                    <div class="input-group ">
+                        <input type="text" class="form-control" placeholder="Search Customer" name="customerFindText">
+                        <button class="btn btn-primary btn-primary" type="submit">Search</button>
+                    </div>
+                </form>
+            </div>
+
+
+        </div>
+    </div>
+
+</section>
+<!--This section is the display of the shops in the database-->
+<h3 class="text-warning text-center" th:each="j:${error}" th:text="${j.getMsg()}"></h3>
+<section class="bg-light p-5">
+    <div class="container ">
+        <h2 class="text-center">Customer List</h2>
+        <button></button>
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo" style="float: right"><span class="text-light">Add Customer</span></button>
+        <div class="heading-line"></div>
+        <table class="table mt-6 table-striped table-hover text-center justify-content-center">
+            <thead class="thead-dark">
+            <tr>
+                <!--title of the table-->
+                <th scope="col">Customer ID</th>
+                <th scope="col">Name</th>
+                <th scope="col">Email</th>
+                <th scope="col">Address</th>
+                <th scope="col">Date of Birth</th>
+                <th scope="col">Late Fee</th>
+                <th scope="col">Operation</th>
+            </tr>
+            </thead>
+            <tbody id="list" th:each="i:${customer}">
+            <tr>
+                <!--iterate the details and use jinja placing the info to the table-->
+                <td><h4 th:text="${i.getCustomerId()}"></h4></td>
+                <td><h4 th:text="${i.getName()}"></h4></td>
+                <td><h4 th:text="${i.getEmail()}"></h4></td>
+                <td><h4 th:text="${i.getAddress()}"></h4></td>
+                <td><h4 th:text="${i.getDateOfBirth()}"></h4></td>
+                <td><h4 th:text="${i.getLateFees()}"> </h4></td>
+                <td><button th:value="${i.getCustomerId()}" class="viewD btn btn-primary" type="button" >View Details</button> </td>
+
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</section>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" style="width: 20%">
+        <div class="modal-content">
+            <h4 class="modal-title align-items-center text-center">Add Customer Form</h4>
+            <div class="modal-header">
+                <div class="modal-body">
+                    <div>
+                        <form id="addCustomer" th:action="@{/addCustomer}" method="post">
+                            <div class="form-group">
+                                <label class="control-label">Customer Name</label>
+                                <input type="text" class="form-control" name="customerName" value="">
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label">Date of Birth</label>
+                                <input type="date" class="form-control" name="dateOfBirth" value="" placeholder="yyyy/mm/dd">
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label">Email</label>
+                                <input type="text" class="form-control" name="email" value="">
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label">Address</label>
+                                <input type="text" class="form-control" name="address" value="">
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label">Max Rentals</label>
+                                <input type="text" class="form-control" name="maxRentals" value="">
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label">Phone Number</label>
+                                <input type="text" class="form-control" name="phone_number" value="">
+                            </div>
+
+
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-primary form-control mt-7" id="submitBookInfo">Add</button>
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<script th:inline="javascript">
+    var exampleModal = document.getElementById('exampleModal')
+    exampleModal.addEventListener('show.bs.modal', function (event) {
+    })
+
+    $(function() {
+        $('#submitReturnInfo').one('click', function() {
+
+        });
+    });
+
+    $(".viewD").on("click",function () {
+        a = $(this).val();
+        top.location.href = "/showCustomer?customerShowId="+a;
+
+
+    })
+
+</script>
+
+
+
+
+</body>
+</html>
